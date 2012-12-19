@@ -52,7 +52,7 @@ class amanda::params (
   }
 
   # This are the allowed characters in a 'name' in the Amanda configuration
-  $name_re = '^[a-zA-Z_-]+$'
+  $name_re = '^[a-zA-Z0-9_-]+$'
 
   # amanda.conf fragment ordering
   $header_order        = '000'
