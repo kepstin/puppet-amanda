@@ -50,13 +50,13 @@ define amanda::config (
     require => File[$::amanda::params::configdir],
   }
 
-  concat::fragment { "amanda::config::$name::amanda_conf_header":
+  concat::fragment { "amanda::config::${name}::amanda_conf_header":
     target  => $amanda_conf_target,
     content => template("amanda/amanda.conf/header.erb"),
     order   => $::amanda::params::header_order,
   }
 
-  concat::fragment { "amanda::config::$name::amanda_conf_footer":
+  concat::fragment { "amanda::config::${name}::amanda_conf_footer":
     target  => $amanda_conf_target,
     content => template("amanda/amanda.conf/footer.erb"),
     order   => $::amanda::params::footer_order,
