@@ -13,11 +13,9 @@ define changer "<%= @changer_name %>" {
   tapedev "<%= @tapedev %>"
 <% end -%>
 <% @property.each_pair do |k, v| -%>
-  property "<%= k %>"
-  <%- if v.respond_to?('each') -%>
+  property "<%= k %>"<%- if v.respond_to?('each') -%>
     <%- v.each do |vi| %> "<%= vi %>"<%- end -%>
   <%- else -%>
-    "<%= v %>"
-  <%- end -%>
+    "<%= v %>"<%- end %>
 <%- end %>
 }
