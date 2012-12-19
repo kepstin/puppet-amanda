@@ -29,7 +29,7 @@
 # Copyright 2012 Calvin Walton <calvin.walton@kepstin.ca>
 #
 define amanda::config (
-  $changers     = {},
+  $changer      = {},
   $dumpcycle    = undef,
   $org          = $name,
   $runspercycle = undef,
