@@ -1,0 +1,20 @@
+# This configuration file is managed by Puppet. Please do not edit it manually.
+
+<% if @org -%>
+org "<%= @org %>"
+<% end -%>
+<% if @dumpcycle -%>
+dumpcycle <%= @dumpcycle %>
+<% end -%>
+<% if @runspercycle -%>
+dumpcycle <%= @runspercycle %>
+<% end -%>
+<% if @tapecycle -%>
+dumpcycle <%= @tapecycle %>
+<% end -%>
+<% if @tpchanger -%>
+tpchanger <%= @tpchanger %>
+<% end -%>
+<% @extra_config.each_pair do |k, v| -%>
+<%= k %> <%= v %>
+<% end -%>

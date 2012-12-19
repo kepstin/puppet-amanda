@@ -1,0 +1,23 @@
+define changer "<%= @name %>" {
+<% @inherit.each do |name| -%>
+  <%= name %>
+<% end -%>
+  tpchanger "<%= @tpchanger %>"
+<% if @changerdev -%>
+  changerdev "<%= @changerdev %>"
+<% end -%>
+<% if @changerfile -%>
+  changerfile "<%= @changerfile %>"
+<% end -%>
+<% if @tapedev -%>
+  tapedev "<%= @tapedev %>"
+<% end -%>
+<% @property.each_pair do |k, v| -%>
+  property "<%= k %>"
+  <%- if va = Array.try_convert(v) -%>
+    <%- va.each do |vi| %> "<%= vi %>"<%- end -%>
+  <%- else -%>
+    "<%= v %>"
+  <%- end -%>
+<%- end %>
+}
