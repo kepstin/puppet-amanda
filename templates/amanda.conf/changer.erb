@@ -13,6 +13,6 @@ define changer "<%= @changer_name %>" {
   tapedev "<%= @tapedev %>"
 <% end -%>
 <% @property.keys.sort.each do |k| -%>
-  property "<%= k %>"<% if @property[v].respond_to?('each') %><% @property[v].each do |v| %> "<%= v %>"<% end %><% else %> "<%= @property[v] %>"<% end %>
+  property "<%= k %>"<% if @property[v].respond_to?('each') %><% @property[k].each do |v| %> "<%= v %>"<% end %><% else %> "<%= @property[k] %>"<% end %>
 <%- end %>
 }
