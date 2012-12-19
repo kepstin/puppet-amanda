@@ -4,6 +4,12 @@
 #
 # === Parameters
 #
+# [*changer_name*]
+#   (Namevar: If omitted, this parameter's value defaults to the resource title)
+#   
+#   The name to use for this changer in the config file, if different from the
+#   resource title.
+#
 # [*tpchanger*]
 #   The Amanda 'tpchanger' string defining the changer and device
 #
@@ -54,16 +60,17 @@
 # Copyright 2012 Calvin Walton <calvin.walton@kepstin.ca>
 #
 define amanda::changer (
+  $changer_name = $name,
   $tpchanger,
-  $changerdev  = undef,
-  $changerfile = undef,
-  $config      = 'daily',
-  $inherit     = [],
-  $order       = undef,
-  $property    = {},
-  $tapedev     = undef,
+  $changerdev   = undef,
+  $changerfile  = undef,
+  $config       = 'daily',
+  $inherit      = [],
+  $order        = undef,
+  $property     = {},
+  $tapedev      = undef,
 ) {
-  validate_re($name, $::amanda::params::name_re)
+  validate_re($changer_name, $::amanda::params::name_re)
   validate_re($config, $config_re)
   validate_hash($property)
   validate_array($inherit)

@@ -9,6 +9,7 @@
 #   create_resources, except that you can leave the 'config' parameter blank
 #   (an example is below). You can leave this blank and call the
 #   amanda::changer type directly if you prefer.
+#   Note that the names you provide must be unique over all configs!
 #
 # === Examples
 #
@@ -30,6 +31,7 @@
 #
 define amanda::config (
   $changer      = {},
+  $changer_disk = {},
   $dumpcycle    = undef,
   $org          = $name,
   $runspercycle = undef,
@@ -37,7 +39,9 @@ define amanda::config (
   $tpchanger    = undef,
   $extra_config = {},
 ) {
+
   validate_hash($changer)
+  validate_hash($changer_disk)
 
   include amanda::server
   include amanda::params
@@ -73,4 +77,5 @@ define amanda::config (
   }
 
   create_resources(amanda::changer, $changer, { config => $name })
+  create_resources(amanda::changer::disk, $changer_disk, { config => $name })
 }
