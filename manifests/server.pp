@@ -16,6 +16,7 @@ class amanda::server (
     mode    => '0660',
     purge   => $purge,
     recurse => true,
+    force   => true,
     require => Package['amanda-server']
   }
 
