@@ -1,0 +1,7 @@
+name 'kepstin-amanda'
+version '0'
+author 'Calvin Walton <calvin.walton@kepstin.ca>'
+summary 'Puppet module for managing Amanda backup tool'
+license 'GNU General Public License, version 2 or later (at your option)'
+project_page 'https://github.com/kepstin/puppet-amanda'
+dependency 'puppetlabs/stdlib'
