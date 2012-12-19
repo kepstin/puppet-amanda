@@ -13,7 +13,7 @@ dumpcycle <%= @runspercycle %>
 dumpcycle <%= @tapecycle %>
 <% end -%>
 <% if @tpchanger -%>
-tpchanger <%= @tpchanger %>
+tpchanger "<%= @tpchanger %>"
 <% end -%>
 <% @extra_config.each_pair do |k, v| -%>
 <%= k %> <%= v %>
