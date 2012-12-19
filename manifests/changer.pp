@@ -88,6 +88,5 @@ define amanda::changer (
     target  => "${::amanda::params::configdir}/${config}/amanda.conf",
     content => template("amanda/amanda.conf/changer.erb"),
     order   => $real_order,
-    require => Amanda::Config[$config],
   }
 }
