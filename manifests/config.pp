@@ -40,8 +40,9 @@ define amanda::config (
   validate_hash($changer)
 
   include amanda::server
+  include amanda::params
 
-  $amanda_conf_target = "${::amanda::server::configdir}/${name}/amanda.conf"
+  $amanda_conf_target = "${::amanda::params::configdir}/${name}/amanda.conf"
 
   concat { $amanda_conf_target:
     owner   => $::amanda::server::user,
