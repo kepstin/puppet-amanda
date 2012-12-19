@@ -44,11 +44,20 @@ define amanda::config (
 
   $amanda_conf_target = "${::amanda::params::configdir}/${name}/amanda.conf"
 
-  concat { $amanda_conf_target:
-    owner   => $::amanda::server::user,
-    group   => $::amanda::server::group,
+  file { "${::amanda::params::configdir}/${name}":
+    ensure  => 'directory',
+    owner   => $::amanda::params::user,
+    group   => $::amanda::params::group,
     mode    => '0660',
-    require => File[$::amanda::params::configdir],
+    purge   => $::amanda::server::purge,
+    recurse => true,
+    force   => true,
+  }
+
+  concat { $amanda_conf_target:
+    owner   => $::amanda::params::user,
+    group   => $::amanda::params::group,
+    mode    => '0660',
   }
 
   concat::fragment { "amanda::config::${name}::amanda_conf_header":
