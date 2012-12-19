@@ -12,7 +12,7 @@ define changer "<%= @changer_name %>" {
 <% if @tapedev -%>
   tapedev "<%= @tapedev %>"
 <% end -%>
-<% @property.each_pair do |k, v| -%>
-  property "<%= k %>"<% if v.respond_to?('each') %><% v.each do |vi| %> "<%= vi %>"<% end %><% else %> "<%= v %>"<% end %>
+<% @property.keys.sort.each do |k| -%>
+  property "<%= k %>"<% if @property[v].respond_to?('each') %><% @property[v].each do |v| %> "<%= v %>"<% end %><% else %> "<%= @property[v] %>"<% end %>
 <%- end %>
 }
