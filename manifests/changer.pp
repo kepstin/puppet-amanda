@@ -85,7 +85,7 @@ define amanda::changer (
   }
 
   concat::fragment { "amanda::changer::$name":
-    target  => "${::amanda::server::configdir}/${config}/amanda.conf",
+    target  => "${::amanda::params::configdir}/${config}/amanda.conf",
     content => template("amanda/amanda.conf/changer.erb"),
     order   => $real_order,
     require => Amanda::Config[$config],
