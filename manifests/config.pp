@@ -46,6 +46,7 @@ define amanda::config (
   include amanda::server
   include amanda::params
 
+  $infofile = $::amanda::params::infofile
   $logdir = $::amanda::params::logdir
   $indexdir = $::amanda::params::indexdir
   $user = $::amanda::params::user

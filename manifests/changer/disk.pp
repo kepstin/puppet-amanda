@@ -21,6 +21,7 @@ define amanda::changer::disk (
   validate_re($changer_name, $::amanda::params::name_re)
 
   $lockfilename = regsubst(regsubst($directory, '^/', ''), '/', '-', 'G')
+  $lockfile = "${::amanda::params::vardir}/${lockfilename}-lock"
 
   file { "amanda::changer::disk::${name}":
     ensure => 'directory',
@@ -40,7 +41,7 @@ define amanda::changer::disk (
       'num-slot'         => $num_slot,
       'removable'        => $removable,
       'umount'           => $umount,
-      'umount-lockfile'  => "${vardir}/${lockfilename}-lock",
+      'umount-lockfile'  => $lockfile,
       'umount-idle'      => $umount_idle,
     },
     require      => File["amanda::changer::disk::${name}"],
