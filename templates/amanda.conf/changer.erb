@@ -14,8 +14,8 @@ define changer "<%= @changer_name %>" {
 <% end -%>
 <% @property.each_pair do |k, v| -%>
   property "<%= k %>"
-  <%- if va = Array.try_convert(v) -%>
-    <%- va.each do |vi| %> "<%= vi %>"<%- end -%>
+  <%- if v.respond_to?('each') -%>
+    <%- v.each do |vi| %> "<%= vi %>"<%- end -%>
   <%- else -%>
     "<%= v %>"
   <%- end -%>
