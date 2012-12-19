@@ -46,8 +46,9 @@ define amanda::config (
   include amanda::server
   include amanda::params
 
-  $amanda_conf_target = "${::amanda::params::configdir}/${name}/amanda.conf"
-  $disklist_target = "${::amanda::params::configdir}/${name}/disklist"
+  $logdir = $::amanda::params::logdir
+  $indexdir = $::amanda::params::indexdir
+  $user = $::amanda::params::user
 
   file { "${::amanda::params::configdir}/${name}":
     ensure  => 'directory',
@@ -59,6 +60,7 @@ define amanda::config (
     force   => true,
   }
 
+  $amanda_conf_target = "${::amanda::params::configdir}/${name}/amanda.conf"
   concat { $amanda_conf_target:
     owner => $::amanda::params::user,
     group => $::amanda::params::group,
@@ -80,6 +82,7 @@ define amanda::config (
   create_resources(amanda::changer, $changer, { config => $name })
   create_resources(amanda::changer::disk, $changer_disk, { config => $name })
 
+  $disklist_target = "${::amanda::params::configdir}/${name}/disklist"
   concat { $disklist_target:
     owner => $::amanda::params::user,
     group => $::amanda::params::group,

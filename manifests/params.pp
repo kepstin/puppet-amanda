@@ -51,6 +51,9 @@ class amanda::params (
     $group = $os_group
   }
 
+  $infofile = "${vardir}/curinfo"
+  $indexdir = "${vardir}/index"
+
   # This are the allowed characters in a 'name' in the Amanda configuration
   $name_re = '^[a-zA-Z0-9_-]+$'
 

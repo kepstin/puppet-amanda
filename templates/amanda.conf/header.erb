@@ -3,11 +3,16 @@
 <% if @org -%>
 org "<%= @org %>"
 <% end -%>
+infofile "<%= @infofile %>"
+logdir "<%= @logdir %>"
+indexdir "<%= @indexdir %>"
+dumpuser "<%= @user %>"
+
 <% if @dumpcycle -%>
 dumpcycle <%= @dumpcycle %>
 <% end -%>
 <% if @runspercycle -%>
-dumpcycle <%= @runspercycle %>
+runspercycle <%= @runspercycle %>
 <% end -%>
 <% if @tapecycle -%>
 dumpcycle <%= @tapecycle %>
