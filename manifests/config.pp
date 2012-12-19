@@ -47,6 +47,7 @@ define amanda::config (
   include amanda::params
 
   $amanda_conf_target = "${::amanda::params::configdir}/${name}/amanda.conf"
+  $disklist_target = "${::amanda::params::configdir}/${name}/disklist"
 
   file { "${::amanda::params::configdir}/${name}":
     ensure  => 'directory',
@@ -59,9 +60,9 @@ define amanda::config (
   }
 
   concat { $amanda_conf_target:
-    owner   => $::amanda::params::user,
-    group   => $::amanda::params::group,
-    mode    => '0660',
+    owner => $::amanda::params::user,
+    group => $::amanda::params::group,
+    mode  => '0660',
   }
 
   concat::fragment { "amanda::config::${name}::amanda_conf_header":
@@ -78,4 +79,16 @@ define amanda::config (
 
   create_resources(amanda::changer, $changer, { config => $name })
   create_resources(amanda::changer::disk, $changer_disk, { config => $name })
+
+  concat { $disklist_target:
+    owner => $::amanda::params::user,
+    group => $::amanda::params::group,
+    mode  => '0660',
+  }
+
+  concat::fragment { "amanda::config::${name}::disklist_header":
+    target  => $disklist_target,
+    content => template("amanda/disklist/header.erb"),
+    order   => $::amanda::params::header_order,
+  }
 }
