@@ -25,7 +25,7 @@ tapetype "<%= @tapetype %>"
 tpchanger "<%= @tpchanger %>"
 <% end -%>
 
-<% @extra_config.each_pair do |k, v| -%>
-<%= k %> <%= v %>
+<% @extra_config.keys.sort.each do |k| -%>
+<%= k %> <%= @extra_config[v] %>
 <% end -%>
 
