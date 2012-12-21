@@ -17,9 +17,14 @@ runspercycle <%= @runspercycle %>
 <% if @tapecycle -%>
 dumpcycle <%= @tapecycle %>
 <% end -%>
+
+<% if @tapetype -%>
+tapetype "<%= @tapetype %>"
+<% end -%>
 <% if @tpchanger -%>
 tpchanger "<%= @tpchanger %>"
 <% end -%>
+
 <% @extra_config.each_pair do |k, v| -%>
 <%= k %> <%= v %>
 <% end -%>

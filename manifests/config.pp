@@ -30,18 +30,14 @@
 # Copyright 2012 Calvin Walton <calvin.walton@kepstin.ca>
 #
 define amanda::config (
-  $changer      = {},
-  $changer_disk = {},
   $dumpcycle    = undef,
   $org          = $name,
   $runspercycle = undef,
   $tapecycle    = undef,
+  $tapetype     = undef,
   $tpchanger    = undef,
   $extra_config = {},
 ) {
-
-  validate_hash($changer)
-  validate_hash($changer_disk)
 
   include amanda::server
   include amanda::params
@@ -73,15 +69,6 @@ define amanda::config (
     content => template("amanda/amanda.conf/header.erb"),
     order   => $::amanda::params::header_order,
   }
-
-  concat::fragment { "amanda::config::${name}::amanda_conf_footer":
-    target  => $amanda_conf_target,
-    content => template("amanda/amanda.conf/footer.erb"),
-    order   => $::amanda::params::footer_order,
-  }
-
-  create_resources(amanda::changer, $changer, { config => $name })
-  create_resources(amanda::changer::disk, $changer_disk, { config => $name })
 
   $disklist_target = "${::amanda::params::configdir}/${name}/disklist"
   concat { $disklist_target:

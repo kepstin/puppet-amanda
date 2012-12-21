@@ -70,21 +70,21 @@ define amanda::changer (
   $property     = {},
   $tapedev      = undef,
 ) {
-  validate_re($changer_name, $::amanda::params::name_re)
-  validate_re($config, $config_re)
-  validate_hash($property)
-  validate_array($inherit)
-
   include amanda::params
   include amanda::server
 
-  if ($order) {
+  validate_re($changer_name, $::amanda::params::name_re)
+  validate_re($config, $::amanda::params::name_re)
+  validate_hash($property)
+  validate_array($inherit)
+
+  if $order {
     $real_order = $order
   } else {
     $real_order = $::amanda::params::changer_order
   }
 
-  concat::fragment { "amanda::changer::$name":
+  concat::fragment { "amanda::changer::${name}":
     target  => "${::amanda::params::configdir}/${config}/amanda.conf",
     content => template("amanda/amanda.conf/changer.erb"),
     order   => $real_order,

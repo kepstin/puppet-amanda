@@ -1,6 +1,5 @@
 class amanda::server (
   $purge   = true,
-  $config = {},
 ) {
   include amanda::params
 
@@ -19,6 +18,4 @@ class amanda::server (
     force   => true,
     require => Package['amanda-server']
   }
-
-  create_resources(amanda::config, $config)
 }
