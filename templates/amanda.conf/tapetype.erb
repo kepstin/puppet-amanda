@@ -1,0 +1,14 @@
+define tapetype "<%= @tapetype_name %>" {
+<% @inherit.each do |t| -%>
+  <%= t %>
+<% end -%>
+<% if @filemark -%>
+  filemark <%= @filemark %>
+<% end -%>
+<% if @length -%>
+  length <%= @length %>
+<% end -%>
+<% @extra_config.keys.sort.each do |k| -%>
+  <%= k %> <%= @extra_config[k] %>
+<% end -%>
+}
