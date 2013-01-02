@@ -23,6 +23,10 @@ class amanda::params (
       $configdir = '/etc/amanda'
       $logdir = '/var/log/amanda'
       $vardir = '/var/lib/amanda'
+
+      # Tool paths
+      $amcheck = '/usr/sbin/amcheck'
+      $amdump = '/usr/sbin/amdump'
     }
     default: {
       fail("Unsupported osfamily: ${::osfamily}")

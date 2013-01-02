@@ -15,7 +15,10 @@ dumpcycle <%= @dumpcycle %>
 runspercycle <%= @runspercycle %>
 <% end -%>
 <% if @tapecycle -%>
-dumpcycle <%= @tapecycle %>
+tapecycle <%= @tapecycle %>
+<% end -%>
+<% if @runtapes -%>
+runtapes <%= @runtapes %>
 <% end -%>
 
 <% if @tapetype -%>
@@ -23,6 +26,11 @@ tapetype "<%= @tapetype %>"
 <% end -%>
 <% if @tpchanger -%>
 tpchanger "<%= @tpchanger %>"
+<% end -%>
+
+labelstr <%= @labelstr %>
+<% if @autolabel_when -%>
+autolabel "<%= @autolabel_pattern %>" <% if @autolabel_when.respond_to?('join') %><%= @autolabel_when.join(' ') %><% else %><%= @autolabel_when %><% end %>
 <% end -%>
 
 <% @extra_config.each do |c| -%>
