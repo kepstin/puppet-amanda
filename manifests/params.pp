@@ -70,4 +70,6 @@ class amanda::params (
   $interactivity_order = '090'
   $taperscan_order     = '100'
   $footer_order        = '999'
+  # disklist fragment ordering
+  $dle_order           = '010'
 }
