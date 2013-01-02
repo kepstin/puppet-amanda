@@ -8,7 +8,7 @@ define tapetype "<%= @tapetype_name %>" {
 <% if @length -%>
   length <%= @length %>
 <% end -%>
-<% @extra_config.keys.sort.each do |k| -%>
-  <%= k %> <%= @extra_config[k] %>
+<% @extra_config.each do |c| -%>
+  <%= c %>
 <% end -%>
 }

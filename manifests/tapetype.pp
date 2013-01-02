@@ -5,7 +5,7 @@ define amanda::tapetype (
   $inherit       = [],
   $length        = undef,
   $order         = undef,
-  $extra_config  = {},
+  $extra_config  = [],
 ) {
   include amanda::params
   include amanda::server
@@ -13,7 +13,7 @@ define amanda::tapetype (
   validate_re($tapetype_name, $::amanda::params::name_re)
   validate_re($config, $::amanda::params::config_re)
   validate_array($inherit)
-  validate_hash($extra_config)
+  validate_array($extra_config)
 
   if $order {
     $real_order = $order

@@ -36,11 +36,13 @@ define amanda::config (
   $tapecycle    = undef,
   $tapetype     = undef,
   $tpchanger    = undef,
-  $extra_config = {},
+  $extra_config = [],
 ) {
 
   include amanda::server
   include amanda::params
+
+  validate_array($extra_config)
 
   $infofile = $::amanda::params::infofile
   $logdir = $::amanda::params::logdir
