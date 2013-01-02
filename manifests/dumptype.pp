@@ -71,7 +71,7 @@ define amanda::dumptype (
   if $index != undef {
     validate_bool($index)
   }
-  if ($program != undef) && (!($program in [ 'DUMP', 'GNUTAR', 'APPLICATION' ])) {
+  if ($program != undef) and (!($program in [ 'DUMP', 'GNUTAR', 'APPLICATION' ])) {
     fail("program must be one of DUMP, GNUTAR, or APPLICATION")
   }
   if $record != undef {
