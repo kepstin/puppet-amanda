@@ -52,7 +52,7 @@ define amanda::dumptype (
   $index         = undef,
   $program       = undef,
   $record        = undef,
-  $inherit       = undef,
+  $inherit       = [],
   $order         = undef,
   $property      = {},
   $extra_config  = [],
