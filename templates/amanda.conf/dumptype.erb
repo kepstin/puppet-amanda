@@ -1,0 +1,29 @@
+define dumptype "<%= @dumptype_name %>" {
+<% @inherit.each do |t| -%>
+  <%= t %>
+<% end -%>
+<% if @auth -%>
+  auth <%= @auth %>
+<% end -%>
+<% if @compress -%>
+  compress <%= @compress %>
+<% end -%>
+<% if @estimate -%>
+  estimate<% @estimate.each do |e| %> <%= e %><% end %>
+<% end -%>
+<% unless @index.nil? -%>
+  index <%= @index %>
+<% end -%>
+<% if @program -%>
+  program "<%= @program %>"
+<% end -%>
+<% unless @record.nil? -%>
+  record <%= @record %>
+<% end -%>
+<% @extra_config.each do |c| -%>
+  <%= c %>
+<% end -%>
+<% @property.keys.sort.each do |k| -%>
+  property "<%= k %>"<% if @property[k].respond_to?('each') %><% @property[k].each do |v| %> "<%= v %>"<% end %><% else %> "<%= @property[k] %>"<% end %>
+<%- end %>
+}
