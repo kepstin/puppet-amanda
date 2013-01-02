@@ -54,7 +54,7 @@ define amanda::dle (
   $config     = 'daily',
   $diskdevice = undef,
   $hostname   = 'localhost',
-  $interface  = 'local',
+  $interface  = undef,
   $spindle    = -1,
 ) {
   include amanda::params
