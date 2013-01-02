@@ -3,7 +3,7 @@ define dumptype "<%= @dumptype_name %>" {
   <%= t %>
 <% end -%>
 <% if @auth -%>
-  auth <%= @auth %>
+  auth "<%= @auth %>"
 <% end -%>
 <% if @compress -%>
   compress <%= @compress %>
