@@ -108,13 +108,14 @@ define amanda::config (
   include amanda::server
   include amanda::params
 
+  if !$org {
+    $org = $config_name
+  }
+
   validate_re($config_name, $::amanda::params::config_name)
   validate_re($org, $::amanda::params::name_re)
   validate_array($extra_config)
 
-  if !$org {
-    $org = $config_name
-  }
   if !$labelstr {
     $labelstr = "${config_name}-[0-9][0-9]*"
   }
