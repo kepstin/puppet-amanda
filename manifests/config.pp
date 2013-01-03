@@ -121,12 +121,12 @@ define amanda::config (
   } else {
     $real_labelstr = "${config_name}-[0-9][0-9]*"
   }
-  if $runspercycle {
+  if $runspercycle and ($runspercycle > 0) { 
     $real_runspercycle = $runspercycle
   } else {
     $real_runspercycle = $dumpcycle
   }
-  if $tapecycle <= ($runspercycle * $runtapes) {
+  if $tapecycle <= ($real_runspercycle * $runtapes) {
     fail('tapecycle is set too low for the number of tapes that will be used')
   }
   validate_array($extra_config)

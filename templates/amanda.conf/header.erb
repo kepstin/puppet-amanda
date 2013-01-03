@@ -26,7 +26,7 @@ tapetype "<%= @tapetype %>"
 tpchanger "<%= @tpchanger %>"
 <% end -%>
 
-labelstr <%= @real_labelstr %>
+labelstr "<%= @real_labelstr %>"
 <% if @autolabel_when -%>
 autolabel "<%= @autolabel_pattern %>" <% if @autolabel_when.respond_to?('join') %><%= @autolabel_when.join(' ') %><% else %><%= @autolabel_when %><% end %>
 <% end -%>
