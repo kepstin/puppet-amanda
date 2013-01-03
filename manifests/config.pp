@@ -153,7 +153,7 @@ define amanda::config (
     mode  => '0660',
   }
 
-  concat::fragment { "amanda::config::${config_name}::amanda_conf_header":
+  concat::fragment { "amanda::config::${name}::amanda_conf_header":
     target  => $amanda_conf_target,
     content => template('amanda/amanda.conf/header.erb'),
     order   => $::amanda::params::header_order,
@@ -166,7 +166,7 @@ define amanda::config (
     mode  => '0660',
   }
 
-  concat::fragment { "amanda::config::${config_name}::disklist_header":
+  concat::fragment { "amanda::config::${name}::disklist_header":
     target  => $disklist_target,
     content => template('amanda/disklist/header.erb'),
     order   => $::amanda::params::header_order,
@@ -175,7 +175,7 @@ define amanda::config (
   # Run a configuration check to verify settings
   # Note that 'su' is used as a workaround to puppet not being able to capture
   # output from commands run as other users
-  exec { "amanda::config::${config_name}::amcheck":
+  exec { "amanda::config::${name}::amcheck":
     path    => '/usr/bin:/usr/sbin:/bin:/sbin',
     unless  => "su ${::amanda::params::user} -c '${::amanda::params::amcheck} ${config_name}' >/dev/null",
     command => "su ${::amanda::params::user} -c '${::amanda::params::amcheck} ${config_name}'",
@@ -185,8 +185,8 @@ define amanda::config (
     ],
   }
 
-  cron { "amanda::config::${org}":
-    command  => "${::amanda::params::amdump} ${org}",
+  cron { "amanda::config::${name}":
+    command  => "${::amanda::params::amdump} ${config_name}",
     user     => $::amanda::params::user,
     hour     => $cron_hour,
     minute   => $cron_minute,
