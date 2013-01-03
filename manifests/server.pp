@@ -1,6 +1,4 @@
-class amanda::server (
-  $purge   = true,
-) {
+class amanda::server {
   include amanda::params
 
   package { $::amanda::params::server_package:
@@ -13,7 +11,6 @@ class amanda::server (
     owner   => $::amanda::params::user,
     group   => $::amanda::params::group,
     mode    => '0660',
-    purge   => $purge,
     recurse => true,
     force   => true,
     require => Package['amanda-server']

@@ -141,7 +141,6 @@ define amanda::config (
     owner   => $::amanda::params::user,
     group   => $::amanda::params::group,
     mode    => '0660',
-    purge   => $::amanda::server::purge,
     recurse => true,
     force   => true,
   }
