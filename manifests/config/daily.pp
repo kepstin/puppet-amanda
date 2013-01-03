@@ -18,11 +18,15 @@
 class amanda::config::daily (
   $directory   = '/srv/amanda',
   $tape_length = '1 gb',
+  $dumpcycle   = 10,
+  $tapecycle   = 15,
 ) {
   amanda::config { 'daily':
     tapetype       => 'vtape',
     tpchanger      => 'vtape',
     autolabel_when => 'empty',
+    dumpcycle      => $dumpcycle,
+    tapecycle      => $tapecycle,
     cron_hour      => fqdn_rand(24),
     cron_minute    => fqdn_rand(60),
   }
@@ -30,7 +34,7 @@ class amanda::config::daily (
     config           => 'daily',
     changer_name     => 'vtape',
     directory        => $directory,
-    num_slot         => 10,
+    num_slot         => $tapecycle,
     auto_create_slot => true,
   }
   amanda::tapetype { 'daily-vtape':
