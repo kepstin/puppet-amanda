@@ -1,8 +1,6 @@
 # This configuration file is managed by Puppet. Please do not edit it manually.
 
-<% if @org -%>
-org "<%= @org %>"
-<% end -%>
+org "<%= @real_org %>"
 infofile "<%= @infofile %>"
 logdir "<%= @logdir %>"
 indexdir "<%= @indexdir %>"
@@ -11,8 +9,8 @@ dumpuser "<%= @user %>"
 <% if @dumpcycle -%>
 dumpcycle <%= @dumpcycle %>
 <% end -%>
-<% if @runspercycle -%>
-runspercycle <%= @runspercycle %>
+<% if @real_runspercycle -%>
+runspercycle <%= @real_runspercycle %>
 <% end -%>
 <% if @tapecycle -%>
 tapecycle <%= @tapecycle %>
@@ -28,7 +26,7 @@ tapetype "<%= @tapetype %>"
 tpchanger "<%= @tpchanger %>"
 <% end -%>
 
-labelstr <%= @labelstr %>
+labelstr <%= @real_labelstr %>
 <% if @autolabel_when -%>
 autolabel "<%= @autolabel_pattern %>" <% if @autolabel_when.respond_to?('join') %><%= @autolabel_when.join(' ') %><% else %><%= @autolabel_when %><% end %>
 <% end -%>

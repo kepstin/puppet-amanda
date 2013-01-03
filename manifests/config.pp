@@ -108,23 +108,28 @@ define amanda::config (
   include amanda::server
   include amanda::params
 
-  if !$org {
-    $org = $config_name
-  }
-
   validate_re($config_name, $::amanda::params::config_name)
-  validate_re($org, $::amanda::params::name_re)
-  validate_array($extra_config)
 
-  if !$labelstr {
-    $labelstr = "${config_name}-[0-9][0-9]*"
+  if $org {
+    $real_org = $org
+  } else {
+    $real_org = $config_name
   }
-  if !$runspercycle {
-    $runspercycle = $dumpcycle
+  validate_re($real_org, $::amanda::params::name_re)
+  if $labelstr {
+    $real_labelstr = $labelstr
+  } else {
+    $real_labelstr = "${config_name}-[0-9][0-9]*"
+  }
+  if $runspercycle {
+    $real_runspercycle = $runspercycle
+  } else {
+    $real_runspercycle = $dumpcycle
   }
   if $tapecycle <= ($runspercycle * $runtapes) {
     fail('tapecycle is set too low for the number of tapes that will be used')
   }
+  validate_array($extra_config)
 
   $infofile = $::amanda::params::infofile
   $logdir = $::amanda::params::logdir
