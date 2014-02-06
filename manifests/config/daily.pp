@@ -22,6 +22,7 @@ class amanda::config::daily (
   $holdingdisk_dir = '/srv/amanda-daily-holdingdisk',
   $dumpcycle       = 10,
   $tapecycle       = 15,
+  $runtapes        = 5,
 ) {
   amanda::config { 'daily':
     tapetype       => 'vtape',
@@ -29,6 +30,7 @@ class amanda::config::daily (
     autolabel_when => 'empty',
     dumpcycle      => $dumpcycle,
     tapecycle      => $tapecycle,
+    runtapes       => $runtapes,
     cron_hour      => fqdn_rand(24),
     cron_minute    => fqdn_rand(60),
   }
