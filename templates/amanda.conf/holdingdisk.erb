@@ -1,0 +1,11 @@
+define holdingdisk "<%= @dumptype_name %>" {
+<% if @directory -%>
+  directory "<%= @directory %>"
+<% end -%>
+<% if @use -%>
+  use <%= @use %>
+<% end -%>
+<% if @chunksize -%>
+  chunksize <% @chunksize %>
+<% end -%>
+}
