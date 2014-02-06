@@ -21,7 +21,7 @@ class amanda::config::daily (
   $holdingdisk_use = '10 gb',
   $holdingdisk_dir = '/srv/amanda-daily-holdingdisk',
   $dumpcycle       = 10,
-  $tapecycle       = 15,
+  $tapecycle       = 55,
   $runtapes        = 5,
 ) {
   amanda::config { 'daily':
