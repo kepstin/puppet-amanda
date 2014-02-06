@@ -16,10 +16,12 @@
 #   A number used by Amanda for scheduling backups.
 #
 class amanda::config::daily (
-  $directory   = '/srv/amanda',
-  $tape_length = '1 gb',
-  $dumpcycle   = 10,
-  $tapecycle   = 15,
+  $directory       = '/srv/amanda',
+  $tape_length     = '1 gb',
+  $holdingdisk_use = '10 gb',
+  $holdingdisk_dir = '/srv/amanda-daily-holdingdisk'
+  $dumpcycle       = 10,
+  $tapecycle       = 15,
 ) {
   amanda::config { 'daily':
     tapetype       => 'vtape',
@@ -29,6 +31,11 @@ class amanda::config::daily (
     tapecycle      => $tapecycle,
     cron_hour      => fqdn_rand(24),
     cron_minute    => fqdn_rand(60),
+  }
+  amanda::holdingdisk { 'daily':
+    config    => 'daily',
+    directory => $holdingdisk_dir,
+    use       => $holdingdisk_use,
   }
   amanda::changer::disk { 'daily-vtape':
     config           => 'daily',
